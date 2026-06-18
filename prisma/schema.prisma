@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Whisky {
+  id Int @id @default(autoincrement())
+  name String
+  distillery String
+  region String?
+  country String
+  ageYears Int?
+  abv Float?
+  type String?
+  sizeMl Int? @default(700)
+  bottledYear Int?
+  imageUrl String?
+  createdAt DateTime @default(now())
+
+  listings ProductListing[]
+  alerts PriceAlert[]
+}
+
+model Retailer {
+  id Int @id @default(autoincrement())
+  name String
+  baseUrl String
+  country String?
+  active Boolean @default(true)
+
+  listings ProductListing[]
+}
+
+model ProductListing {
+  id Int @id @default(autoincrement())
+  whiskyId Int
+  retailerId Int
+  productUrl String
+  sku String?
+  inStock Boolean @default(true)
+  lastChecked DateTime?
+
+  whisky Whisky @relation(fields:[whiskyId], references: [id])
+  retailer Retailer @relation(fields: [retailerId], references: [id])
+  snapshots PriceSnapshot[]
+}
+
+model PriceSnapshot {
+  id Int @id @default(autoincrement())
+  listingId Int
+  price Decimal @db.Decimal(10,2)
+  recordedAt DateTime @default(now())
+
+  listing ProductListing @relation(fields: [listingId], references: [id])
+}
+
+model PriceAlert {
+  id Int @id @default(autoincrement())
+  whiskyId Int
+  targetPrice Decimal @db.Decimal(10,2)
+  triggered Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  whisky Whisky @relation(fields: [whiskyId], references: [id])
+}
