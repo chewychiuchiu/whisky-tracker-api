@@ -9,6 +9,7 @@ const options: swaggerJsdoc.Options = {
       description: 'API for tracking whisky prices across US retailers',
     },
     servers: [
+      { url: 'https://whisky-tracker-api.onrender.com', description: 'Production server' },
       { url: 'http://127.0.0.1:8080', description: 'Local dev server' },
     ],
   },
