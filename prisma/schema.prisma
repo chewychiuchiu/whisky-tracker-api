@@ -14,6 +14,7 @@ datasource db {
 
 model Whisky {
   id Int @id @default(autoincrement())
+  userId Int
   name String
   distillery String
   region String?
@@ -26,8 +27,20 @@ model Whisky {
   imageUrl String?
   createdAt DateTime @default(now())
 
+  user User @relation(fields: [userId], references: [id])
   listings ProductListing[]
   alerts PriceAlert[]
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  googleId String @unique
+  email String @unique
+  name String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+
+  whiskies Whisky[]
 }
 
 model Retailer {

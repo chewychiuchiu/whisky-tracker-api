@@ -28,6 +28,7 @@ export type AggregateWhisky = {
 
 export type WhiskyAvgAggregateOutputType = {
   id: number | null
+  userId: number | null
   ageYears: number | null
   abv: number | null
   sizeMl: number | null
@@ -36,6 +37,7 @@ export type WhiskyAvgAggregateOutputType = {
 
 export type WhiskySumAggregateOutputType = {
   id: number | null
+  userId: number | null
   ageYears: number | null
   abv: number | null
   sizeMl: number | null
@@ -44,6 +46,7 @@ export type WhiskySumAggregateOutputType = {
 
 export type WhiskyMinAggregateOutputType = {
   id: number | null
+  userId: number | null
   name: string | null
   distillery: string | null
   region: string | null
@@ -59,6 +62,7 @@ export type WhiskyMinAggregateOutputType = {
 
 export type WhiskyMaxAggregateOutputType = {
   id: number | null
+  userId: number | null
   name: string | null
   distillery: string | null
   region: string | null
@@ -74,6 +78,7 @@ export type WhiskyMaxAggregateOutputType = {
 
 export type WhiskyCountAggregateOutputType = {
   id: number
+  userId: number
   name: number
   distillery: number
   region: number
@@ -91,6 +96,7 @@ export type WhiskyCountAggregateOutputType = {
 
 export type WhiskyAvgAggregateInputType = {
   id?: true
+  userId?: true
   ageYears?: true
   abv?: true
   sizeMl?: true
@@ -99,6 +105,7 @@ export type WhiskyAvgAggregateInputType = {
 
 export type WhiskySumAggregateInputType = {
   id?: true
+  userId?: true
   ageYears?: true
   abv?: true
   sizeMl?: true
@@ -107,6 +114,7 @@ export type WhiskySumAggregateInputType = {
 
 export type WhiskyMinAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   distillery?: true
   region?: true
@@ -122,6 +130,7 @@ export type WhiskyMinAggregateInputType = {
 
 export type WhiskyMaxAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   distillery?: true
   region?: true
@@ -137,6 +146,7 @@ export type WhiskyMaxAggregateInputType = {
 
 export type WhiskyCountAggregateInputType = {
   id?: true
+  userId?: true
   name?: true
   distillery?: true
   region?: true
@@ -239,6 +249,7 @@ export type WhiskyGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type WhiskyGroupByOutputType = {
   id: number
+  userId: number
   name: string
   distillery: string
   region: string | null
@@ -277,6 +288,7 @@ export type WhiskyWhereInput = {
   OR?: Prisma.WhiskyWhereInput[]
   NOT?: Prisma.WhiskyWhereInput | Prisma.WhiskyWhereInput[]
   id?: Prisma.IntFilter<"Whisky"> | number
+  userId?: Prisma.IntFilter<"Whisky"> | number
   name?: Prisma.StringFilter<"Whisky"> | string
   distillery?: Prisma.StringFilter<"Whisky"> | string
   region?: Prisma.StringNullableFilter<"Whisky"> | string | null
@@ -288,12 +300,14 @@ export type WhiskyWhereInput = {
   bottledYear?: Prisma.IntNullableFilter<"Whisky"> | number | null
   imageUrl?: Prisma.StringNullableFilter<"Whisky"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Whisky"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   listings?: Prisma.ProductListingListRelationFilter
   alerts?: Prisma.PriceAlertListRelationFilter
 }
 
 export type WhiskyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   distillery?: Prisma.SortOrder
   region?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -305,6 +319,7 @@ export type WhiskyOrderByWithRelationInput = {
   bottledYear?: Prisma.SortOrderInput | Prisma.SortOrder
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
   listings?: Prisma.ProductListingOrderByRelationAggregateInput
   alerts?: Prisma.PriceAlertOrderByRelationAggregateInput
 }
@@ -314,6 +329,7 @@ export type WhiskyWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.WhiskyWhereInput | Prisma.WhiskyWhereInput[]
   OR?: Prisma.WhiskyWhereInput[]
   NOT?: Prisma.WhiskyWhereInput | Prisma.WhiskyWhereInput[]
+  userId?: Prisma.IntFilter<"Whisky"> | number
   name?: Prisma.StringFilter<"Whisky"> | string
   distillery?: Prisma.StringFilter<"Whisky"> | string
   region?: Prisma.StringNullableFilter<"Whisky"> | string | null
@@ -325,12 +341,14 @@ export type WhiskyWhereUniqueInput = Prisma.AtLeast<{
   bottledYear?: Prisma.IntNullableFilter<"Whisky"> | number | null
   imageUrl?: Prisma.StringNullableFilter<"Whisky"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Whisky"> | Date | string
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   listings?: Prisma.ProductListingListRelationFilter
   alerts?: Prisma.PriceAlertListRelationFilter
 }, "id">
 
 export type WhiskyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   distillery?: Prisma.SortOrder
   region?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -354,6 +372,7 @@ export type WhiskyScalarWhereWithAggregatesInput = {
   OR?: Prisma.WhiskyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.WhiskyScalarWhereWithAggregatesInput | Prisma.WhiskyScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Whisky"> | number
+  userId?: Prisma.IntWithAggregatesFilter<"Whisky"> | number
   name?: Prisma.StringWithAggregatesFilter<"Whisky"> | string
   distillery?: Prisma.StringWithAggregatesFilter<"Whisky"> | string
   region?: Prisma.StringNullableWithAggregatesFilter<"Whisky"> | string | null
@@ -379,12 +398,14 @@ export type WhiskyCreateInput = {
   bottledYear?: number | null
   imageUrl?: string | null
   createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutWhiskiesInput
   listings?: Prisma.ProductListingCreateNestedManyWithoutWhiskyInput
   alerts?: Prisma.PriceAlertCreateNestedManyWithoutWhiskyInput
 }
 
 export type WhiskyUncheckedCreateInput = {
   id?: number
+  userId: number
   name: string
   distillery: string
   region?: string | null
@@ -412,12 +433,14 @@ export type WhiskyUpdateInput = {
   bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutWhiskiesNestedInput
   listings?: Prisma.ProductListingUpdateManyWithoutWhiskyNestedInput
   alerts?: Prisma.PriceAlertUpdateManyWithoutWhiskyNestedInput
 }
 
 export type WhiskyUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   distillery?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -435,6 +458,7 @@ export type WhiskyUncheckedUpdateInput = {
 
 export type WhiskyCreateManyInput = {
   id?: number
+  userId: number
   name: string
   distillery: string
   region?: string | null
@@ -464,6 +488,7 @@ export type WhiskyUpdateManyMutationInput = {
 
 export type WhiskyUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   distillery?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -479,6 +504,7 @@ export type WhiskyUncheckedUpdateManyInput = {
 
 export type WhiskyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   distillery?: Prisma.SortOrder
   region?: Prisma.SortOrder
@@ -494,6 +520,7 @@ export type WhiskyCountOrderByAggregateInput = {
 
 export type WhiskyAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   ageYears?: Prisma.SortOrder
   abv?: Prisma.SortOrder
   sizeMl?: Prisma.SortOrder
@@ -502,6 +529,7 @@ export type WhiskyAvgOrderByAggregateInput = {
 
 export type WhiskyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   distillery?: Prisma.SortOrder
   region?: Prisma.SortOrder
@@ -517,6 +545,7 @@ export type WhiskyMaxOrderByAggregateInput = {
 
 export type WhiskyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   distillery?: Prisma.SortOrder
   region?: Prisma.SortOrder
@@ -532,10 +561,21 @@ export type WhiskyMinOrderByAggregateInput = {
 
 export type WhiskySumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   ageYears?: Prisma.SortOrder
   abv?: Prisma.SortOrder
   sizeMl?: Prisma.SortOrder
   bottledYear?: Prisma.SortOrder
+}
+
+export type WhiskyListRelationFilter = {
+  every?: Prisma.WhiskyWhereInput
+  some?: Prisma.WhiskyWhereInput
+  none?: Prisma.WhiskyWhereInput
+}
+
+export type WhiskyOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type WhiskyScalarRelationFilter = {
@@ -579,6 +619,48 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type WhiskyCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput> | Prisma.WhiskyCreateWithoutUserInput[] | Prisma.WhiskyUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WhiskyCreateOrConnectWithoutUserInput | Prisma.WhiskyCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.WhiskyCreateManyUserInputEnvelope
+  connect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+}
+
+export type WhiskyUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput> | Prisma.WhiskyCreateWithoutUserInput[] | Prisma.WhiskyUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WhiskyCreateOrConnectWithoutUserInput | Prisma.WhiskyCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.WhiskyCreateManyUserInputEnvelope
+  connect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+}
+
+export type WhiskyUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput> | Prisma.WhiskyCreateWithoutUserInput[] | Prisma.WhiskyUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WhiskyCreateOrConnectWithoutUserInput | Prisma.WhiskyCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.WhiskyUpsertWithWhereUniqueWithoutUserInput | Prisma.WhiskyUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.WhiskyCreateManyUserInputEnvelope
+  set?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  disconnect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  delete?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  connect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  update?: Prisma.WhiskyUpdateWithWhereUniqueWithoutUserInput | Prisma.WhiskyUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.WhiskyUpdateManyWithWhereWithoutUserInput | Prisma.WhiskyUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.WhiskyScalarWhereInput | Prisma.WhiskyScalarWhereInput[]
+}
+
+export type WhiskyUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput> | Prisma.WhiskyCreateWithoutUserInput[] | Prisma.WhiskyUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.WhiskyCreateOrConnectWithoutUserInput | Prisma.WhiskyCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.WhiskyUpsertWithWhereUniqueWithoutUserInput | Prisma.WhiskyUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.WhiskyCreateManyUserInputEnvelope
+  set?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  disconnect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  delete?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  connect?: Prisma.WhiskyWhereUniqueInput | Prisma.WhiskyWhereUniqueInput[]
+  update?: Prisma.WhiskyUpdateWithWhereUniqueWithoutUserInput | Prisma.WhiskyUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.WhiskyUpdateManyWithWhereWithoutUserInput | Prisma.WhiskyUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.WhiskyScalarWhereInput | Prisma.WhiskyScalarWhereInput[]
+}
+
 export type WhiskyCreateNestedOneWithoutListingsInput = {
   create?: Prisma.XOR<Prisma.WhiskyCreateWithoutListingsInput, Prisma.WhiskyUncheckedCreateWithoutListingsInput>
   connectOrCreate?: Prisma.WhiskyCreateOrConnectWithoutListingsInput
@@ -607,6 +689,84 @@ export type WhiskyUpdateOneRequiredWithoutAlertsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WhiskyUpdateToOneWithWhereWithoutAlertsInput, Prisma.WhiskyUpdateWithoutAlertsInput>, Prisma.WhiskyUncheckedUpdateWithoutAlertsInput>
 }
 
+export type WhiskyCreateWithoutUserInput = {
+  name: string
+  distillery: string
+  region?: string | null
+  country: string
+  ageYears?: number | null
+  abv?: number | null
+  type?: string | null
+  sizeMl?: number | null
+  bottledYear?: number | null
+  imageUrl?: string | null
+  createdAt?: Date | string
+  listings?: Prisma.ProductListingCreateNestedManyWithoutWhiskyInput
+  alerts?: Prisma.PriceAlertCreateNestedManyWithoutWhiskyInput
+}
+
+export type WhiskyUncheckedCreateWithoutUserInput = {
+  id?: number
+  name: string
+  distillery: string
+  region?: string | null
+  country: string
+  ageYears?: number | null
+  abv?: number | null
+  type?: string | null
+  sizeMl?: number | null
+  bottledYear?: number | null
+  imageUrl?: string | null
+  createdAt?: Date | string
+  listings?: Prisma.ProductListingUncheckedCreateNestedManyWithoutWhiskyInput
+  alerts?: Prisma.PriceAlertUncheckedCreateNestedManyWithoutWhiskyInput
+}
+
+export type WhiskyCreateOrConnectWithoutUserInput = {
+  where: Prisma.WhiskyWhereUniqueInput
+  create: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput>
+}
+
+export type WhiskyCreateManyUserInputEnvelope = {
+  data: Prisma.WhiskyCreateManyUserInput | Prisma.WhiskyCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type WhiskyUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.WhiskyWhereUniqueInput
+  update: Prisma.XOR<Prisma.WhiskyUpdateWithoutUserInput, Prisma.WhiskyUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.WhiskyCreateWithoutUserInput, Prisma.WhiskyUncheckedCreateWithoutUserInput>
+}
+
+export type WhiskyUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.WhiskyWhereUniqueInput
+  data: Prisma.XOR<Prisma.WhiskyUpdateWithoutUserInput, Prisma.WhiskyUncheckedUpdateWithoutUserInput>
+}
+
+export type WhiskyUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.WhiskyScalarWhereInput
+  data: Prisma.XOR<Prisma.WhiskyUpdateManyMutationInput, Prisma.WhiskyUncheckedUpdateManyWithoutUserInput>
+}
+
+export type WhiskyScalarWhereInput = {
+  AND?: Prisma.WhiskyScalarWhereInput | Prisma.WhiskyScalarWhereInput[]
+  OR?: Prisma.WhiskyScalarWhereInput[]
+  NOT?: Prisma.WhiskyScalarWhereInput | Prisma.WhiskyScalarWhereInput[]
+  id?: Prisma.IntFilter<"Whisky"> | number
+  userId?: Prisma.IntFilter<"Whisky"> | number
+  name?: Prisma.StringFilter<"Whisky"> | string
+  distillery?: Prisma.StringFilter<"Whisky"> | string
+  region?: Prisma.StringNullableFilter<"Whisky"> | string | null
+  country?: Prisma.StringFilter<"Whisky"> | string
+  ageYears?: Prisma.IntNullableFilter<"Whisky"> | number | null
+  abv?: Prisma.FloatNullableFilter<"Whisky"> | number | null
+  type?: Prisma.StringNullableFilter<"Whisky"> | string | null
+  sizeMl?: Prisma.IntNullableFilter<"Whisky"> | number | null
+  bottledYear?: Prisma.IntNullableFilter<"Whisky"> | number | null
+  imageUrl?: Prisma.StringNullableFilter<"Whisky"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Whisky"> | Date | string
+}
+
 export type WhiskyCreateWithoutListingsInput = {
   name: string
   distillery: string
@@ -619,11 +779,13 @@ export type WhiskyCreateWithoutListingsInput = {
   bottledYear?: number | null
   imageUrl?: string | null
   createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutWhiskiesInput
   alerts?: Prisma.PriceAlertCreateNestedManyWithoutWhiskyInput
 }
 
 export type WhiskyUncheckedCreateWithoutListingsInput = {
   id?: number
+  userId: number
   name: string
   distillery: string
   region?: string | null
@@ -666,11 +828,13 @@ export type WhiskyUpdateWithoutListingsInput = {
   bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutWhiskiesNestedInput
   alerts?: Prisma.PriceAlertUpdateManyWithoutWhiskyNestedInput
 }
 
 export type WhiskyUncheckedUpdateWithoutListingsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   distillery?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -697,11 +861,13 @@ export type WhiskyCreateWithoutAlertsInput = {
   bottledYear?: number | null
   imageUrl?: string | null
   createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutWhiskiesInput
   listings?: Prisma.ProductListingCreateNestedManyWithoutWhiskyInput
 }
 
 export type WhiskyUncheckedCreateWithoutAlertsInput = {
   id?: number
+  userId: number
   name: string
   distillery: string
   region?: string | null
@@ -744,10 +910,59 @@ export type WhiskyUpdateWithoutAlertsInput = {
   bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutWhiskiesNestedInput
   listings?: Prisma.ProductListingUpdateManyWithoutWhiskyNestedInput
 }
 
 export type WhiskyUncheckedUpdateWithoutAlertsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  distillery?: Prisma.StringFieldUpdateOperationsInput | string
+  region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  ageYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  abv?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  listings?: Prisma.ProductListingUncheckedUpdateManyWithoutWhiskyNestedInput
+}
+
+export type WhiskyCreateManyUserInput = {
+  id?: number
+  name: string
+  distillery: string
+  region?: string | null
+  country: string
+  ageYears?: number | null
+  abv?: number | null
+  type?: string | null
+  sizeMl?: number | null
+  bottledYear?: number | null
+  imageUrl?: string | null
+  createdAt?: Date | string
+}
+
+export type WhiskyUpdateWithoutUserInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  distillery?: Prisma.StringFieldUpdateOperationsInput | string
+  region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  ageYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  abv?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  listings?: Prisma.ProductListingUpdateManyWithoutWhiskyNestedInput
+  alerts?: Prisma.PriceAlertUpdateManyWithoutWhiskyNestedInput
+}
+
+export type WhiskyUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   distillery?: Prisma.StringFieldUpdateOperationsInput | string
@@ -761,6 +976,22 @@ export type WhiskyUncheckedUpdateWithoutAlertsInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   listings?: Prisma.ProductListingUncheckedUpdateManyWithoutWhiskyNestedInput
+  alerts?: Prisma.PriceAlertUncheckedUpdateManyWithoutWhiskyNestedInput
+}
+
+export type WhiskyUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  distillery?: Prisma.StringFieldUpdateOperationsInput | string
+  region?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  ageYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  abv?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeMl?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  bottledYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -805,6 +1036,7 @@ export type WhiskyCountOutputTypeCountAlertsArgs<ExtArgs extends runtime.Types.E
 
 export type WhiskySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   distillery?: boolean
   region?: boolean
@@ -816,6 +1048,7 @@ export type WhiskySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   bottledYear?: boolean
   imageUrl?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   listings?: boolean | Prisma.Whisky$listingsArgs<ExtArgs>
   alerts?: boolean | Prisma.Whisky$alertsArgs<ExtArgs>
   _count?: boolean | Prisma.WhiskyCountOutputTypeDefaultArgs<ExtArgs>
@@ -823,6 +1056,7 @@ export type WhiskySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 
 export type WhiskySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   distillery?: boolean
   region?: boolean
@@ -834,10 +1068,12 @@ export type WhiskySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   bottledYear?: boolean
   imageUrl?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["whisky"]>
 
 export type WhiskySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   name?: boolean
   distillery?: boolean
   region?: boolean
@@ -849,10 +1085,12 @@ export type WhiskySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   bottledYear?: boolean
   imageUrl?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["whisky"]>
 
 export type WhiskySelectScalar = {
   id?: boolean
+  userId?: boolean
   name?: boolean
   distillery?: boolean
   region?: boolean
@@ -866,23 +1104,30 @@ export type WhiskySelectScalar = {
   createdAt?: boolean
 }
 
-export type WhiskyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "distillery" | "region" | "country" | "ageYears" | "abv" | "type" | "sizeMl" | "bottledYear" | "imageUrl" | "createdAt", ExtArgs["result"]["whisky"]>
+export type WhiskyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "distillery" | "region" | "country" | "ageYears" | "abv" | "type" | "sizeMl" | "bottledYear" | "imageUrl" | "createdAt", ExtArgs["result"]["whisky"]>
 export type WhiskyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   listings?: boolean | Prisma.Whisky$listingsArgs<ExtArgs>
   alerts?: boolean | Prisma.Whisky$alertsArgs<ExtArgs>
   _count?: boolean | Prisma.WhiskyCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type WhiskyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type WhiskyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type WhiskyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type WhiskyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $WhiskyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Whisky"
   objects: {
+    user: Prisma.$UserPayload<ExtArgs>
     listings: Prisma.$ProductListingPayload<ExtArgs>[]
     alerts: Prisma.$PriceAlertPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    userId: number
     name: string
     distillery: string
     region: string | null
@@ -1288,6 +1533,7 @@ readonly fields: WhiskyFieldRefs;
  */
 export interface Prisma__WhiskyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   listings<T extends Prisma.Whisky$listingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Whisky$listingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   alerts<T extends Prisma.Whisky$alertsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Whisky$alertsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PriceAlertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1320,6 +1566,7 @@ export interface Prisma__WhiskyClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface WhiskyFieldRefs {
   readonly id: Prisma.FieldRef<"Whisky", 'Int'>
+  readonly userId: Prisma.FieldRef<"Whisky", 'Int'>
   readonly name: Prisma.FieldRef<"Whisky", 'String'>
   readonly distillery: Prisma.FieldRef<"Whisky", 'String'>
   readonly region: Prisma.FieldRef<"Whisky", 'String'>
@@ -1585,6 +1832,10 @@ export type WhiskyCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.WhiskyCreateManyInput | Prisma.WhiskyCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhiskyIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1655,6 +1906,10 @@ export type WhiskyUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Whiskies to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WhiskyIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

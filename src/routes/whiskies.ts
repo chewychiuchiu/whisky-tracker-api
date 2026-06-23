@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express'
 import prisma from '../lib/prisma'
 import { validate } from '../middleware/validate'
 import { createWhiskySchema, updateWhiskySchema } from '../validators/whisky.validators'
+import { requireAuth, AuthRequest } from '../middleware/auth'
 
 const router = Router()
 
@@ -22,15 +23,16 @@ const router = Router()
  *       200:
  *         description: List of all whiskies
  */
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', requireAuth, async (req: AuthRequest, res: Response) => {
   try {
-    const whiskies = await prisma.whisky.findMany()
+    const whiskies = await prisma.whisky.findMany({
+      where: { userId: req.userId }
+    })
     res.json(whiskies)
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch whiskies' })
   }
 })
-
 /**
  * @swagger
  * /whiskies/{id}:
@@ -49,7 +51,7 @@ router.get('/', async (req: Request, res: Response) => {
  *       404:
  *         description: Whisky not found
  */
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', requireAuth, async (req: AuthRequest, res: Response) => {
   try {
     const whisky = await prisma.whisky.findUnique({
       where: { id: parseInt(req.params.id) },
@@ -104,11 +106,14 @@ router.get('/:id', async (req: Request, res: Response) => {
  *       400:
  *         description: Validation error
  */
-router.post('/', validate(createWhiskySchema), async (req: Request, res: Response) => {
+router.post('/', requireAuth, validate(createWhiskySchema), async (req: AuthRequest, res: Response) => {
   try {
-    const whisky = await prisma.whisky.create({ data: req.body })
+    const whisky = await prisma.whisky.create({
+      data: { ...req.body, userId: req.userId }
+    })
     res.status(201).json(whisky)
   } catch (err) {
+    console.error('Whisky creation error:', err)
     res.status(500).json({ message: 'Failed to create whisky' })
   }
 })
@@ -137,7 +142,7 @@ router.post('/', validate(createWhiskySchema), async (req: Request, res: Respons
  *       404:
  *         description: Whisky not found
  */
-router.put('/:id', validate(updateWhiskySchema), async (req: Request, res: Response) => {
+router.put('/:id', requireAuth, validate(updateWhiskySchema), async (req: AuthRequest, res: Response) => {
   try {
     const whisky = await prisma.whisky.update({
       where: { id: parseInt(req.params.id) },
@@ -171,7 +176,7 @@ router.put('/:id', validate(updateWhiskySchema), async (req: Request, res: Respo
  *       404:
  *         description: Whisky not found
  */
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', requireAuth, async (req: AuthRequest, res: Response) => {
   try {
     const id = parseInt(req.params.id)
 
@@ -230,7 +235,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
  *       404:
  *         description: Whisky not found
  */
-router.get('/:id/prices', async (req: Request, res: Response) => {
+router.get('/:id/prices', requireAuth, async (req: AuthRequest, res: Response) => {
   try {
     const whiskyId = parseInt(req.params.id)
 

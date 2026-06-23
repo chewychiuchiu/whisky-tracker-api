@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Whisky: 'Whisky',
+  User: 'User',
   Retailer: 'Retailer',
   ProductListing: 'ProductListing',
   PriceSnapshot: 'PriceSnapshot',
@@ -76,6 +77,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 
 export const WhiskyScalarFieldEnum = {
   id: 'id',
+  userId: 'userId',
   name: 'name',
   distillery: 'distillery',
   region: 'region',
@@ -90,6 +92,18 @@ export const WhiskyScalarFieldEnum = {
 } as const
 
 export type WhiskyScalarFieldEnum = (typeof WhiskyScalarFieldEnum)[keyof typeof WhiskyScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  googleId: 'googleId',
+  email: 'email',
+  name: 'name',
+  avatarUrl: 'avatarUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
 export const RetailerScalarFieldEnum = {

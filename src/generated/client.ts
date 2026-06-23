@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type Whisky = Prisma.WhiskyModel
 /**
+ * Model User
+ * 
+ */
+export type User = Prisma.UserModel
+/**
  * Model Retailer
  * 
  */

@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express'
 import { searchAndScrapePrice } from '../scraper/shopify'
 import { scrapeBottleBlueBook } from '../scraper/bottlebluebook'
 import prisma from '../lib/prisma'
+import { requireAuth, AuthRequest } from '../middleware/auth'
 
 const router = Router()
 
@@ -23,7 +24,7 @@ const router = Router()
  *       404:
  *         description: Whisky not found
  */
-router.post('/scrape/:whiskyId', async (req: Request, res: Response) => {
+router.post('/scrape/:whiskyId', requireAuth, async (req: AuthRequest, res: Response) => {
   try {
     const whiskyId = parseInt(req.params.whiskyId)
     const whisky = await (prisma as any).whisky.findUnique({
